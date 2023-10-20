@@ -5,7 +5,7 @@ import userRoutes from "./routes/users.js";
 import videoRoutes from "./routes/videos.js";
 import commentRoutes from "./routes/comments.js";
 import authRoutes from "./routes/auth.js";
-// import cors from "cors";
+import cors from "cors";
 
 const app = express();
 dotenv.config();
@@ -21,25 +21,12 @@ const connect = () => {
         });
 };
 
-// app.use(
-//     cors({
-//         origin: "https://youclone-project.com",
-//         methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
-//     })
-// );
-
-app.use((req, res, next) => {
-    res.setHeader(
-        "Access-Control-Allow-Origin",
-        "https://youclone-project.com"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-    next();
-});
+app.use(
+    cors({
+        origin: ["https://youclone-project.com"],
+        methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+    })
+);
 
 app.use(express.json());
 app.use("/api/auth", authRoutes);
