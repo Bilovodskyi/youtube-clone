@@ -11,9 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { TfiClose } from "react-icons/tfi";
 import { BsCheckCircle } from "react-icons/bs";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../redux/store";
-import { logout } from "../redux/userSlice";
 
 const Container = styled.div`
     width: 100%;
@@ -93,8 +90,6 @@ const Uploaded = styled.p`
     gap: 5px;
 `;
 
-const useAppDispatch: () => AppDispatch = useDispatch;
-
 const UploadVideo = ({ setOpen, userId }: UploadVideoProps) => {
     const [img, setImg] = useState<File>();
     const [video, setVideo] = useState<File>();
@@ -104,7 +99,6 @@ const UploadVideo = ({ setOpen, userId }: UploadVideoProps) => {
     const [tags, setTags] = useState<string[]>([]);
 
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
 
     const handleChange = (e: FormEvent) => {
         const target = e.target as HTMLInputElement;

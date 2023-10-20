@@ -14,7 +14,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { dislike, fetchSuccess, like, view } from "../redux/videoSlice";
 import { format } from "timeago.js";
 import GitHubBanner from "../components/GitHubBanner";
-import { logout, subscription } from "../redux/userSlice";
+import { subscription } from "../redux/userSlice";
 import Recommendation from "../components/Recommendation";
 import axios from "axios";
 import { COLORS, avatarColor } from "../utils/AvatarColor";
@@ -244,7 +244,7 @@ const Video = () => {
                 );
                 dispatch(like(currentUser?._id));
             } catch (err: any) {
-                    console.log(err);
+                console.log(err);
             }
         } else {
             navigate("/signin");
@@ -260,7 +260,7 @@ const Video = () => {
                 dispatch(dislike(currentUser?._id));
             } catch (err: any) {
                 console.log(err);
-        }
+            }
         } else {
             navigate("/signin");
         }
@@ -279,7 +279,7 @@ const Video = () => {
                 dispatch(subscription(channel?._id));
             } catch (err: any) {
                 console.log(err);
-        }
+            }
         } else {
             navigate("/signin");
         }
@@ -293,7 +293,7 @@ const Video = () => {
                 );
                 dispatch(view);
             } catch (err: any) {
-                    console.log(err);
+                console.log(err);
             }
             setVideoView(false);
         }

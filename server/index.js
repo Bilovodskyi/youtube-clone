@@ -23,7 +23,7 @@ const connect = () => {
 
 app.use(
     cors({
-        origin: ["https://youclone-project.com"],
+        origin: "https://youclone-project.com",
         methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
     })
 );

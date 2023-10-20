@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { MdSearch } from "react-icons/md";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import { BiVideoPlus } from "react-icons/bi";
