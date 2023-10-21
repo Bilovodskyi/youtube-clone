@@ -4,6 +4,8 @@ import SingleComment from "./SingleComment";
 import axios from "axios";
 import { COLORS, avatarColor } from "../utils/AvatarColor";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const Container = styled.div``;
 
@@ -92,6 +94,10 @@ const Comments = ({
 
     const navigate = useNavigate();
 
+    const currentUser = useSelector(
+        (state: RootState) => state.user.currentUser
+    );
+
     useEffect(() => {
         const fetchComments = async () => {
             try {
@@ -107,7 +113,7 @@ const Comments = ({
     }, [videoId, commentButtons]);
 
     const showCommentButtons = () => {
-        if (userName) {
+        if (currentUser?.name) {
             setCommentButtons(true);
         } else {
             navigate("/signin");
@@ -122,6 +128,7 @@ const Comments = ({
         await axios.post("https://api.youclone-project.com/api/comments", {
             videoId,
             desc: userComment,
+            id: currentUser?._id,
         });
         setUserComment("");
         setCommentButtons(false);
@@ -130,14 +137,18 @@ const Comments = ({
         <Container>
             <NewComment>
                 <FlexContainer>
-                    {userImage ? (
-                        <Avatar src={userImage} />
+                    {currentUser?.img ? (
+                        <Avatar src={currentUser.img} />
                     ) : (
                         <NoImgURL
                             color={
-                                COLORS[createdAt ? avatarColor(createdAt) : 0]
+                                COLORS[
+                                    currentUser?.createdAt
+                                        ? avatarColor(currentUser.createdAt)
+                                        : 0
+                                ]
                             }>
-                            {userName && userName[0]}
+                            {currentUser?.name && currentUser.name[0]}
                         </NoImgURL>
                     )}
                     <Input
