@@ -11,9 +11,6 @@ type ChannelProps = {
 
 type CommentsProps = {
     videoId?: string;
-    userImage: string | undefined;
-    userName: string | undefined;
-    createdAt: string | undefined;
 };
 
 type CommentsDataType = {

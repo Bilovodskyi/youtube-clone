@@ -5,11 +5,9 @@ import {
     like,
     subscribe,
     unsubscribe,
-    update,
 } from "../controllers/user.js";
 const router = express.Router();
 
-router.put("/:id", update);
 router.get("/find/:id", getUser);
 router.put("/sub/:id", subscribe);
 router.put("/unsub/:id", unsubscribe);

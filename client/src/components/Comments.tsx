@@ -82,12 +82,7 @@ const NoImgURL = styled.div`
     font-size: 1.1rem;
 `;
 
-const Comments = ({
-    videoId,
-    userImage,
-    userName,
-    createdAt,
-}: CommentsProps) => {
+const Comments = ({ videoId }: CommentsProps) => {
     const [comments, setComments] = useState<CommentsDataType[] | []>([]);
     const [commentButtons, setCommentButtons] = useState(false);
     const [userComment, setUserComment] = useState("");

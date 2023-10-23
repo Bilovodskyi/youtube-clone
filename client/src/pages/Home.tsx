@@ -31,6 +31,10 @@ const Home = ({ type }: HomeProps) => {
 
     const menu = useSelector((state: RootState) => state.menu.menu);
 
+    const currentUser = useSelector(
+        (state: RootState) => state.user.currentUser
+    );
+
     useEffect(() => {
         if (ref.current) {
             setWidth(ref.current.offsetWidth);
@@ -41,7 +45,10 @@ const Home = ({ type }: HomeProps) => {
         const fetchVideos = async () => {
             try {
                 const res = await axios.get(
-                    `https://api.youclone-project.com/api/videos/${type}`
+                    `https://api.youclone-project.com/api/videos/${type}`,
+                    {
+                        data: { id: currentUser?._id },
+                    }
                 );
                 setVideos(res.data);
             } catch (err) {
@@ -49,7 +56,7 @@ const Home = ({ type }: HomeProps) => {
             }
         };
         fetchVideos();
-    }, []);
+    }, [type]);
 
     return (
         <Container width={width} ref={ref}>

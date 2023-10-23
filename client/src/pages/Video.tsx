@@ -240,7 +240,10 @@ const Video = () => {
         if (currentUser) {
             try {
                 await axios.put(
-                    `https://api.youclone-project.com/api/users/like/${currentVideo?._id}`
+                    `https://api.youclone-project.com/api/users/like/${currentVideo?._id}`,
+                    {
+                        id: currentUser?._id,
+                    }
                 );
                 dispatch(like(currentUser?._id));
             } catch (err: any) {
@@ -255,7 +258,10 @@ const Video = () => {
         if (currentUser) {
             try {
                 await axios.put(
-                    `https://api.youclone-project.com/api/users/dislike/${currentVideo?._id}`
+                    `https://api.youclone-project.com/api/users/dislike/${currentVideo?._id}`,
+                    {
+                        id: currentUser?._id,
+                    }
                 );
                 dispatch(dislike(currentUser?._id));
             } catch (err: any) {
@@ -271,10 +277,16 @@ const Video = () => {
             try {
                 currentUser?.subscribedUsers.includes(channel?._id!)
                     ? await axios.put(
-                          `https://api.youclone-project.com/api/users/unsub/${channel?._id}`
+                          `https://api.youclone-project.com/api/users/unsub/${channel?._id}`,
+                          {
+                              id: currentUser?._id,
+                          }
                       )
                     : await axios.put(
-                          `https://api.youclone-project.com/api/users/sub/${channel?._id}`
+                          `https://api.youclone-project.com/api/users/sub/${channel?._id}`,
+                          {
+                              id: currentUser?._id,
+                          }
                       );
                 dispatch(subscription(channel?._id));
             } catch (err: any) {
@@ -480,12 +492,7 @@ const Video = () => {
                     </DescriptionContainer>
                 </Channel>
 
-                <Comments
-                    videoId={currentVideo?._id}
-                    userImage={currentUser?.img}
-                    userName={currentUser?.name}
-                    createdAt={currentUser?.createdAt}
-                />
+                <Comments videoId={currentVideo?._id} />
             </Content>
             <Recommendation
                 tags={currentVideo?.tags}
