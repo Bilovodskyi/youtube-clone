@@ -123,7 +123,7 @@ const Comments = ({ videoId }: CommentsProps) => {
         await axios.post("https://api.youclone-project.com/api/comments", {
             videoId,
             desc: userComment,
-            id: currentUser?._id,
+            userId: currentUser?._id,
         });
         setUserComment("");
         setCommentButtons(false);
