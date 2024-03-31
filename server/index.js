@@ -23,8 +23,12 @@ const connect = () => {
 
 app.use(
     cors({
-        origin: "https://youclone-project.com",
+        origin: [
+            "https://youtube-clone-flame-seven.vercel.app",
+            "http://localhost:5173",
+        ],
         methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+        credentials: true,
     })
 );
 
