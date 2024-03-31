@@ -62,7 +62,9 @@ const SingleComment = ({ comment }: SingleCommentType) => {
     useEffect(() => {
         const fetchComment = async () => {
             const res = await axios.get(
-                `https://api.youclone-project.com/api/users/find/${comment.userId}`
+                `${import.meta.env.VITE_SERVER}/api/users/find/${
+                    comment.userId
+                }`
             );
             setChannel(res.data);
         };

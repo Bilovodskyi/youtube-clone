@@ -13,7 +13,7 @@ const Recommendation = ({ tags, videoId, children }: RecommendationProps) => {
     useEffect(() => {
         const fetchVideos = async () => {
             const res = await axios.get(
-                `https://api.youclone-project.com/api/videos/tags?tags=${tags}`
+                `${import.meta.env.VITE_SERVER}/api/videos/tags?tags=${tags}`
             );
             setVideos(res.data);
         };

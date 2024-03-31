@@ -118,7 +118,7 @@ const LogoutMenu = ({
     const dispatch = useAppDispatch();
     const handleLogout = async () => {
         try {
-            await axios.get("https://api.youclone-project.com/api/auth/logout");
+            await axios.get(`${import.meta.env.VITE_SERVER}/api/auth/logout`);
             setLogoutMenu(false);
             dispatch(logout());
         } catch (err) {

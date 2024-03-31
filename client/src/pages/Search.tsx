@@ -18,7 +18,7 @@ const Search = () => {
     useEffect(() => {
         const fetchVideos = async () => {
             const res = await axios.get(
-                `https://api.youclone-project.com/api/videos/search${query}`
+                `${import.meta.env.VITE_SERVER}/api/videos/search${query}`
             );
             setVideos(res.data);
         };

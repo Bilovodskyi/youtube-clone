@@ -97,7 +97,7 @@ const Comments = ({ videoId }: CommentsProps) => {
         const fetchComments = async () => {
             try {
                 const res = await axios.get(
-                    `https://api.youclone-project.com/api/comments/${videoId}`
+                    `${import.meta.env.VITE_SERVER}/api/comments/${videoId}`
                 );
                 setComments(res.data);
             } catch (error) {
@@ -120,7 +120,7 @@ const Comments = ({ videoId }: CommentsProps) => {
         setUserComment("");
     };
     const handleComment = async () => {
-        await axios.post("https://api.youclone-project.com/api/comments", {
+        await axios.post(`${import.meta.env.VITE_SERVER}/api/comments`, {
             videoId,
             desc: userComment,
             userId: currentUser?._id,

@@ -107,7 +107,7 @@ const Signin = () => {
         dispatch(loginStart());
         try {
             const res = await axios.post(
-                "https://api.youclone-project.com/api/auth/signin",
+                `${import.meta.env.VITE_SERVER}/api/auth/signin`,
                 {
                     name,
                     password,
@@ -127,7 +127,7 @@ const Signin = () => {
         e.preventDefault();
         try {
             const res = await axios.post(
-                "https://api.youclone-project.com/api/auth/signup",
+                `${import.meta.env.VITE_SERVER}/api/auth/signup`,
                 {
                     name,
                     password,
@@ -148,7 +148,7 @@ const Signin = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
                 axios
-                    .post("https://api.youclone-project.com/api/auth/google", {
+                    .post(`${import.meta.env.VITE_SERVER}/api/auth/google`, {
                         name: result.user.displayName,
                         email: result.user.email,
                         img: result.user.photoURL,

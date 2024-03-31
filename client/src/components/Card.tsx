@@ -101,7 +101,7 @@ const Card = ({ type, video }: CardProps) => {
     useEffect(() => {
         const fetchVideos = async () => {
             const res = await axios.get(
-                `https://api.youclone-project.com/api/users/find/${video?.userId}`
+                `${import.meta.env.VITE_SERVER}/api/users/find/${video?.userId}`
             );
             setChannel(res.data);
         };

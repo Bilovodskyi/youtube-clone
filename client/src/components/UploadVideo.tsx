@@ -165,7 +165,7 @@ const UploadVideo = ({ setOpen, userId }: UploadVideoProps) => {
         e.preventDefault();
         try {
             const res = await axios.post(
-                "https://api.youclone-project.com/api/videos",
+                `${import.meta.env.VITE_SERVER}/api/videos`,
                 {
                     ...inputs,
                     tags,

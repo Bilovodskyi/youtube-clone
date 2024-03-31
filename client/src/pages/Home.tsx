@@ -45,7 +45,7 @@ const Home = ({ type }: HomeProps) => {
         const fetchVideos = async () => {
             try {
                 const res = await axios.get(
-                    `https://api.youclone-project.com/api/videos/${type}`,
+                    `${import.meta.env.VITE_SERVER}/api/videos/${type}`,
                     {
                         data: { id: currentUser?._id },
                     }

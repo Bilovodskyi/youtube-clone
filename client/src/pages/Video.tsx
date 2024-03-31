@@ -222,10 +222,12 @@ const Video = () => {
         const fetchData = async () => {
             try {
                 const videoRes = await axios.get(
-                    `https://api.youclone-project.com/api/videos/find/${path}`
+                    `${import.meta.env.VITE_SERVER}/api/videos/find/${path}`
                 );
                 const channelRes = await axios.get(
-                    `https://api.youclone-project.com/api/users/find/${videoRes.data.userId}`
+                    `${import.meta.env.VITE_SERVER}/api/users/find/${
+                        videoRes.data.userId
+                    }`
                 );
                 setChannel(channelRes.data);
                 dispatch(fetchSuccess(videoRes.data));
@@ -240,7 +242,9 @@ const Video = () => {
         if (currentUser) {
             try {
                 await axios.put(
-                    `https://api.youclone-project.com/api/users/like/${currentVideo?._id}`,
+                    `${import.meta.env.VITE_SERVER}/api/users/like/${
+                        currentVideo?._id
+                    }`,
                     {
                         id: currentUser?._id,
                     }
@@ -258,7 +262,9 @@ const Video = () => {
         if (currentUser) {
             try {
                 await axios.put(
-                    `https://api.youclone-project.com/api/users/dislike/${currentVideo?._id}`,
+                    `${import.meta.env.VITE_SERVER}/api/users/dislike/${
+                        currentVideo?._id
+                    }`,
                     {
                         id: currentUser?._id,
                     }
@@ -277,13 +283,17 @@ const Video = () => {
             try {
                 currentUser?.subscribedUsers.includes(channel?._id!)
                     ? await axios.put(
-                          `https://api.youclone-project.com/api/users/unsub/${channel?._id}`,
+                          `${import.meta.env.VITE_SERVER}/api/users/unsub/${
+                              channel?._id
+                          }`,
                           {
                               id: currentUser?._id,
                           }
                       )
                     : await axios.put(
-                          `https://api.youclone-project.com/api/users/sub/${channel?._id}`,
+                          `${import.meta.env.VITE_SERVER}/api/users/sub/${
+                              channel?._id
+                          }`,
                           {
                               id: currentUser?._id,
                           }
@@ -301,7 +311,9 @@ const Video = () => {
         if (videoView) {
             try {
                 await axios.get(
-                    `https://api.youclone-project.com/api/videos/view/${currentVideo?._id}`
+                    `${import.meta.env.VITE_SERVER}/api/videos/view/${
+                        currentVideo?._id
+                    }`
                 );
                 dispatch(view);
             } catch (err: any) {
