@@ -315,7 +315,7 @@ const Video = () => {
                         currentVideo?._id
                     }`
                 );
-                dispatch(view);
+                dispatch(view());
             } catch (err: any) {
                 console.log(err);
             }
