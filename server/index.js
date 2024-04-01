@@ -7,20 +7,11 @@ import commentRoutes from "./routes/comments.js";
 import authRoutes from "./routes/auth.js";
 import cors from "cors";
 
+dotenv.config();
+
 const app = express();
 
-app.use(
-    cors({
-        origin: [
-            "https://youtube-clone-flame-seven.vercel.app",
-            "http://localhost:5173",
-        ],
-        methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
-        credentials: true,
-    })
-);
-
-dotenv.config();
+app.use(cors());
 
 const connect = () => {
     mongoose
