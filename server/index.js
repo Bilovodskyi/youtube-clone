@@ -8,6 +8,18 @@ import authRoutes from "./routes/auth.js";
 import cors from "cors";
 
 const app = express();
+
+app.use(
+    cors({
+        origin: [
+            "https://youtube-clone-flame-seven.vercel.app",
+            "http://localhost:5173",
+        ],
+        methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+        credentials: true,
+    })
+);
+
 dotenv.config();
 
 const connect = () => {
@@ -20,17 +32,6 @@ const connect = () => {
             throw err;
         });
 };
-
-app.use(
-    cors({
-        origin: [
-            "https://youtube-clone-flame-seven.vercel.app",
-            "http://localhost:5173",
-        ],
-        methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
-        credentials: true,
-    })
-);
 
 app.use(express.json());
 app.use("/api/auth", authRoutes);
