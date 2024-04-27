@@ -6,10 +6,12 @@ import videoRoutes from "./routes/videos.js";
 import commentRoutes from "./routes/comments.js";
 import authRoutes from "./routes/auth.js";
 import cors from "cors";
+import path from "path";
 
 dotenv.config();
 
 const app = express();
+const __dirname = path.resolve();
 
 app.use(cors());
 
@@ -29,6 +31,14 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/videos", videoRoutes);
 app.use("/api/comments", commentRoutes);
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+    });
+}
 
 app.use((err, req, res, next) => {
     const status = err.status || 500;
